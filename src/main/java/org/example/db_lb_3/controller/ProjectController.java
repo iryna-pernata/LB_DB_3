@@ -18,22 +18,17 @@ public class ProjectController {
 
     @GetMapping
     public List<Project> getAll() {
-        return service.getAll();
-    }
-
-    @GetMapping("/{id}")
-    public Project getById(@PathVariable Long id) {
-        return service.getById(id);
+        return service.findAll();
     }
 
     @PostMapping
-    public Project create(@RequestBody Project project) {
-        return service.create(project);
+    public Project create(@RequestBody Project p) {
+        return service.create(p);
     }
 
     @PutMapping("/{id}")
-    public Project update(@PathVariable Long id, @RequestBody Project project) {
-        return service.update(id, project);
+    public Project update(@PathVariable Long id, @RequestBody Project p) {
+        return service.update(id, p);
     }
 
     @DeleteMapping("/{id}")

@@ -21,19 +21,14 @@ public class EmployeeController {
         return service.getAll();
     }
 
-    @GetMapping("/{id}")
-    public Employee getById(@PathVariable Long id) {
-        return service.getById(id);
-    }
-
     @PostMapping
-    public Employee create(@RequestBody Employee employee) {
-        return service.create(employee);
+    public Employee create(@RequestBody Employee e) {
+        return service.create(e);
     }
 
     @PutMapping("/{id}")
-    public Employee update(@PathVariable Long id, @RequestBody Employee employee) {
-        return service.update(id, employee);
+    public Employee update(@PathVariable Long id, @RequestBody Employee e) {
+        return service.update(id, e);
     }
 
     @DeleteMapping("/{id}")

@@ -2,6 +2,7 @@ package org.example.db_lb_3.models;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -9,11 +10,24 @@ public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String title;
-    private Double budget;
+
+    private String name;
+    private String description;
 
     @ManyToMany
-    private List<Employee> employees;
+    @JoinTable(
+            name = "employee_project",
+            joinColumns = @JoinColumn(name = "project_id"),
+            inverseJoinColumns = @JoinColumn(name = "employee_id")
+    )
+    private List<Employee> employees = new ArrayList<>();
+
+    public Project() {}
+
+    public Project(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
 
     public Long getId() {
         return id;
@@ -23,20 +37,20 @@ public class Project {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Double getBudget() {
-        return budget;
+    public String getDescription() {
+        return description;
     }
 
-    public void setBudget(Double budget) {
-        this.budget = budget;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public List<Employee> getEmployees() {

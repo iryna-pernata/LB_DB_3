@@ -30,8 +30,6 @@ public class EmployeeService {
     public Employee update(Long id, Employee updatedData) {
         return repo.findById(id).map(emp -> {
             emp.setName(updatedData.getName());
-            emp.setPosition(updatedData.getPosition());
-            emp.setSalary(updatedData.getSalary());
             emp.setDepartment(updatedData.getDepartment());
             return repo.save(emp);
         }).orElseThrow(() -> new RuntimeException("Employee not found"));

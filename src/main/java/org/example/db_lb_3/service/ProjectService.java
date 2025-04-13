@@ -9,35 +9,35 @@ import java.util.List;
 @Service
 public class ProjectService {
 
-    private final ProjectRepository repo;
+    private final ProjectRepository repository;
 
-    public ProjectService(ProjectRepository repo) {
-        this.repo = repo;
+    public ProjectService(ProjectRepository repository) {
+        this.repository = repository;
     }
 
-    public List<Project> getAll() {
-        return repo.findAll();
+    public List<Project> findAll() {
+        return repository.findAll();
     }
 
     public Project getById(Long id) {
-        return repo.findById(id).orElseThrow(() -> new RuntimeException("Project not found"));
+        return repository.findById(id).orElseThrow(() -> new RuntimeException("Project not found"));
     }
 
-    public Project create(Project project) {
-        return repo.save(project);
+    public Project create(Project p) {
+        return repository.save(p);
     }
 
-    public Project update(Long id, Project updatedData) {
-        return repo.findById(id).map(proj -> {
-            proj.setTitle(updatedData.getTitle());
-            proj.setBudget(updatedData.getBudget());
-            proj.setEmployees(updatedData.getEmployees());
-            return repo.save(proj);
+    public Project update(Long id, Project p) {
+        return repository.findById(id).map(project -> {
+            project.setName(p.getName());
+            project.setDescription(p.getDescription());
+            project.setEmployees(p.getEmployees());
+            return repository.save(project);
         }).orElseThrow(() -> new RuntimeException("Project not found"));
     }
 
     public void delete(Long id) {
-        repo.deleteById(id);
+        repository.deleteById(id);
     }
 }
 

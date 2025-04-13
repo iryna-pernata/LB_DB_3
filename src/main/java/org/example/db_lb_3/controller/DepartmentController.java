@@ -21,19 +21,14 @@ public class DepartmentController {
         return service.getAll();
     }
 
-    @GetMapping("/{id}")
-    public Department getById(@PathVariable Long id) {
-        return service.getById(id);
-    }
-
     @PostMapping
-    public Department create(@RequestBody Department department) {
-        return service.create(department);
+    public Department create(@RequestBody Department d) {
+        return service.create(d);
     }
 
     @PutMapping("/{id}")
-    public Department update(@PathVariable Long id, @RequestBody Department department) {
-        return service.update(id, department);
+    public Department update(@PathVariable Long id, @RequestBody Department d) {
+        return service.update(id, d);
     }
 
     @DeleteMapping("/{id}")
